@@ -40,17 +40,20 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 1rem 3rem;
-  background: rgba(10,15,8,0.95);
-  backdrop-filter: blur(10px);
+  background: rgba(10,15,8,0.85);
+  backdrop-filter: blur(15px);
   border-bottom: 1px solid rgba(34,139,34,0.25);
 }
-.nav-logo { display: flex; align-items: center; gap: 0.8rem; text-decoration: none; cursor: pointer; }
+.nav-logo { display: flex; align-items: center; gap: 0.8rem; text-decoration: none; cursor: pointer; transition: 0.3s; }
+.nav-logo:hover { transform: scale(1.05); }
 .nav-logo img { height: 45px; width: auto; }
 .nav-logo-text { font-family: var(--font-display); font-size: 1.4rem; color: var(--green-light); letter-spacing: 0.05em; }
 
 .nav-links { display: flex; gap: 1.5rem; list-style: none; }
-.nav-links a { color: var(--muted); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; transition: 0.3s; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; transition: 0.3s; position: relative; }
+.nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background: var(--green-bright); transition: 0.3s; }
 .nav-links a:hover { color: var(--green-bright); }
+.nav-links a:hover::after { width: 100%; }
 
 /* HERO */
 .hero {
@@ -61,113 +64,85 @@ nav {
   justify-content: center;
   text-align: center;
   padding: 120px 20px 60px;
+  background: radial-gradient(circle at center, rgba(34,139,34,0.1) 0%, transparent 70%);
 }
 .hero-logo {
   width: min(320px, 70vw);
   height: auto;
   margin-bottom: 2rem;
-  filter: drop-shadow(0 0 20px rgba(34,139,34,0.3));
-  animation: fadeUp 1s ease-out;
+  filter: drop-shadow(0 0 15px rgba(34,139,34,0.4));
+  animation: float 4s ease-in-out infinite, fadeIn 1.2s ease-out;
 }
-.hero-saison { font-family: var(--font-display); font-size: 1.2rem; color: var(--green-light); letter-spacing: 0.3em; margin-bottom: 1rem; }
-.hero-sub { max-width: 600px; font-size: 1.1rem; color: var(--muted); margin-bottom: 2.5rem; }
+.hero-saison { font-family: var(--font-display); font-size: 1.5rem; color: var(--green-bright); letter-spacing: 0.4em; margin-bottom: 1rem; animation: slideIn 1s ease-out; }
+.hero-sub { max-width: 650px; font-size: 1.2rem; color: var(--white); margin-bottom: 2.5rem; opacity: 0.8; }
 
 /* SECTIONS GÉNÉRALES */
-.section-label { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green-light); margin-bottom: 1rem; display: block; }
-h2 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 3.5rem); line-height: 1.1; margin-bottom: 1.5rem; }
+h2 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1; margin-bottom: 1.5rem; color: var(--white); }
 
 /* ABOUT SECTION */
-.about { padding: 100px 3rem; background: var(--dark); display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-.about p { color: var(--muted); font-size: 1.1rem; margin-bottom: 1.5rem; }
+.about { padding: 120px 3rem; background: var(--dark); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
 .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-.stat-card { border: 1px solid rgba(34,139,34,0.3); padding: 1.5rem; background: rgba(255,255,255,0.02); }
-.stat-number { font-family: var(--font-display); font-size: 2.5rem; color: var(--green-bright); }
-.stat-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; }
+.stat-card { 
+  border: 1px solid rgba(34,139,34,0.2); 
+  padding: 2.5rem 1.5rem; 
+  background: rgba(255,255,255,0.02); 
+  transition: 0.4s; 
+  position: relative;
+  overflow: hidden;
+}
+.stat-card:hover { 
+  transform: translateY(-10px); 
+  border-color: var(--green-bright);
+  background: rgba(34,139,34,0.05);
+}
+.stat-card::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--green-mid); transform: scaleY(0); transition: 0.3s;
+}
+.stat-card:hover::before { transform: scaleY(1); }
+.stat-number { font-family: var(--font-display); font-size: 3rem; color: var(--green-bright); line-height: 1; }
+.stat-label { font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
 
 /* FORM SECTION */
-.form-section { background: var(--dark2); padding: 100px 20px; border-top: 1px solid rgba(34,139,34,0.15); }
-.form-container { max-width: 700px; margin: 0 auto; }
-.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-.form-group { display: flex; flex-direction: column; gap: 0.5rem; }
-.full { grid-column: span 2; }
-
-label { font-size: 0.8rem; text-transform: uppercase; color: var(--green-light); font-weight: 500; }
-input, select, textarea {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(34,139,34,0.3);
-  padding: 1rem;
-  color: white;
-  font-family: var(--font-body);
-  outline: none;
-}
-input:focus, textarea:focus { border-color: var(--green-bright); background: rgba(34,139,34,0.1); }
+.form-section { background: var(--dark2); padding: 120px 20px; border-top: 1px solid rgba(34,139,34,0.15); position: relative; }
+.form-container { max-width: 700px; margin: 0 auto; z-index: 2; position: relative; }
 
 /* BOUTONS */
-.btn-primary, .btn-submit {
+.btn-primary {
   background: var(--green-mid);
   color: white;
-  padding: 1rem 2.5rem;
+  padding: 1.2rem 3rem;
   text-decoration: none;
   font-family: var(--font-display);
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   letter-spacing: 0.1em;
-  transition: 0.3s;
+  transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   display: inline-block;
-  border: none;
-  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
-.btn-primary:hover, .btn-submit:hover { background: var(--green-bright); transform: translateY(-3px); }
-
-/* SOCIAL BAR */
-.contact-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 3rem;
-  background: var(--dark);
-  border-top: 1px solid rgba(255,255,255,0.05);
-  flex-wrap: wrap;
-}
-.social-group {
-  display: flex;
-  gap: 1.2rem;
-  flex-wrap: wrap;
-}
-.social-link {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  color: var(--green-bright);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 0.9rem;
-  transition: 0.3s;
-}
-.social-link:hover { color: white; }
-.social-icon {
-  width: 28px; height: 28px;
-  background: var(--green-mid);
-  color: white;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: bold; border-radius: 4px;
-  font-size: 0.8rem;
+.btn-primary:hover { 
+  background: var(--green-bright); 
+  transform: scale(1.05) translateY(-5px); 
+  box-shadow: 0 15px 30px rgba(34,139,34,0.3);
 }
 
-.success-msg { display: none; color: var(--green-bright); text-align: center; margin-top: 1rem; font-weight: 500; }
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+/* ANIMATIONS */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
 }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideIn { from { transform: translateX(-50px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
 @media (max-width: 950px) {
-  .about { grid-template-columns: 1fr; padding: 60px 1.5rem; }
+  .about { grid-template-columns: 1fr; padding: 60px 1.5rem; text-align: center; }
   .nav-links { display: none; }
-  .form-grid { grid-template-columns: 1fr; }
-  .full { grid-column: span 1; }
-  .contact-bar { flex-direction: column; gap: 2rem; text-align: center; }
-  .social-group { justify-content: center; }
 }
+
+/* SOCIAL BAR */
+.contact-bar { padding: 4rem 3rem; background: var(--dark); border-top: 1px solid rgba(255,255,255,0.05); text-align: center; }
+.social-group { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+.social-link { color: var(--green-bright); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: 0.3s; }
+.social-link:hover { color: white; transform: translateY(-3px); }
 </style>
 </head>
 <body>
@@ -189,61 +164,61 @@ input:focus, textarea:focus { border-color: var(--green-bright); background: rgb
 <section class="hero" id="accueil">
   <img src="images/logo.png" alt="Logo HBM" class="hero-logo">
   <p class="hero-saison">SAISON 2026 — 2027</p>
-  <p class="hero-sub">Un nouveau club se crée à Mouy. Rejoins-nous pour bâtir quelque chose ensemble.</p>
-  <a href="#contact" class="btn-primary">DEVENIR LICENCIÉ</a>
+  <p class="hero-sub">Le Handball Club Mouy s'éveille. Un projet ambitieux, une équipe soudée, et bientôt... vos premiers exploits sur le terrain.</p>
+  <a href="#contact" class="btn-primary">REJOINDRE L'AVENTURE</a>
 </section>
 
 <section class="about" id="about">
   <div>
     <span class="section-label">L'aventure commence</span>
-    <h2>Un club né d'une passion</h2>
-    <p>Le HBM est un club en cours de création, porté par des passionnés qui souhaitent offrir une structure sportive conviviale et ambitieuse aux habitants de Mouy et ses environs.</p>
-    <p>Nous accueillons les joueurs et joueuses de tous niveaux pour construire une équipe soudée dès la première saison.</p>
+    <h2>Propulsons le Hand à Mouy</h2>
+    <p>Le HBM est un club en cours de création, porté par des passionnés qui souhaitent offrir une structure sportive conviviale et ambitieuse.</p>
+    <p>Peu importe votre niveau, c'est votre envie de construire ce club avec nous qui fera la différence.</p>
   </div>
   <div class="stats-grid">
     <div class="stat-card">
       <div class="stat-number">2026</div>
-      <div class="stat-label">Année de création</div>
+      <div class="stat-label">Lancement Officiel</div>
     </div>
     <div class="stat-card">
-      <div class="stat-number">Adultes</div>
-      <div class="stat-label">Catégorie visée</div>
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Passion Mouysarde</div>
     </div>
     <div class="stat-card">
-      <div class="stat-number">Mouy</div>
-      <div class="stat-label">Oise (60)</div>
+      <div class="stat-number">60</div>
+      <div class="stat-label">Fierté de l'Oise</div>
     </div>
     <div class="stat-card">
-      <div class="stat-number">Ouvert</div>
-      <div class="stat-label">Tous niveaux</div>
+      <div class="stat-number">∞</div>
+      <div class="stat-label">Esprit d'équipe</div>
     </div>
   </div>
 </section>
 
 <section class="form-section" id="contact">
   <div class="form-container">
-    <h2 style="text-align: center; font-family: var(--font-display); font-size: 3rem; margin-bottom: 1rem;">REJOINDRE LE CLUB</h2>
-    <p style="text-align: center; color: var(--muted); margin-bottom: 3rem;">Laisse-nous tes coordonnées pour être informé des premiers entraînements.</p>
+    <h2 style="text-align: center;">REJOINDRE LE CLUB</h2>
+    <p style="text-align: center; color: var(--muted); margin-bottom: 3rem;">Inscrivez-vous pour être les premiers informés des entraînements et des événements.</p>
     
     <form action="https://formspree.io/f/xqewepzw" method="POST" id="interest-form">
-      <div class="form-grid">
-        <div class="form-group">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+        <div style="display:flex; flex-direction:column; gap:0.5rem;">
           <label>Prénom</label>
           <input type="text" name="prenom" required>
         </div>
-        <div class="form-group">
+        <div style="display:flex; flex-direction:column; gap:0.5rem;">
           <label>Nom</label>
           <input type="text" name="nom" required>
         </div>
-        <div class="form-group">
+        <div style="display:flex; flex-direction:column; gap:0.5rem;">
           <label>Email</label>
           <input type="email" name="email" required>
         </div>
-        <div class="form-group">
+        <div style="display:flex; flex-direction:column; gap:0.5rem;">
           <label>Téléphone</label>
           <input type="tel" name="telephone">
         </div>
-        <div class="form-group">
+        <div style="display:flex; flex-direction:column; gap:0.5rem;">
           <label>Niveau</label>
           <select name="niveau">
             <option value="debutant">Débutant</option>
@@ -251,41 +226,33 @@ input:focus, textarea:focus { border-color: var(--green-bright); background: rgb
             <option value="expert">Compétition</option>
           </select>
         </div>
-        <div class="form-group">
+        <div style="display:flex; flex-direction:column; gap:0.5rem;">
           <label>Ville</label>
           <input type="text" name="ville">
         </div>
-        <div class="form-group full">
-          <label>Message (optionnel)</label>
-          <textarea name="message" rows="4"></textarea>
-        </div>
       </div>
-      <button type="submit" class="btn-submit" id="btn-submit">ENVOYER MA DEMANDE</button>
-      <div class="success-msg" id="success-msg">Message envoyé avec succès !</div>
+      <div style="margin-top:1.5rem; display:flex; flex-direction:column; gap:0.5rem;">
+        <label>Message (optionnel)</label>
+        <textarea name="message" rows="4"></textarea>
+      </div>
+      <button type="submit" id="btn-submit" class="btn-primary" style="width:100%; margin-top:2rem; cursor:pointer; border:none;">ENVOYER MA DEMANDE</button>
+      <div id="success-msg" style="display:none; color:var(--green-bright); text-align:center; margin-top:1.5rem; font-weight:bold;">Message envoyé ! Bienvenue dans l'équipe.</div>
     </form>
   </div>
 </section>
 
 <div class="contact-bar">
-  <p style="color: var(--muted); margin-bottom: 10px;">HBM — Oise, Hauts-de-France</p>
+  <p style="color: var(--muted);">Suivez la création du club en direct</p>
   <div class="social-group">
-    <a href="mailto:Handball.mouy@gmail.com" class="social-link">
-      <span class="social-icon">✉</span> Handball.mouy@gmail.com
-    </a>
-    <a href="https://www.facebook.com/profile.php?id=61572143188788" target="_blank" class="social-link">
-      <span class="social-icon">FB</span> Facebook
-    </a>
-    <a href="https://www.instagram.com/handball.mouy/" target="_blank" class="social-link">
-      <span class="social-icon">IG</span> Instagram
-    </a>
-    <a href="https://www.tiktok.com/@mouy.handball" target="_blank" class="social-link">
-      <span class="social-icon">TK</span> TikTok
-    </a>
+    <a href="mailto:Handball.mouy@gmail.com" class="social-link">✉ Email</a>
+    <a href="https://www.facebook.com/profile.php?id=61572143188788" target="_blank" class="social-link">FB Facebook</a>
+    <a href="https://www.instagram.com/handball.mouy/" target="_blank" class="social-link">IG Instagram</a>
+    <a href="https://www.tiktok.com/@mouy.handball" target="_blank" class="social-link">TK TikTok</a>
   </div>
 </div>
 
-<footer style="text-align: center; padding: 40px 20px; color: var(--muted); font-size: 0.8rem; background: var(--dark2); border-top: 1px solid rgba(255,255,255,0.05);">
-  &copy; 2026 HBM — Tous droits réservés
+<footer style="text-align: center; padding: 40px; color: var(--muted); font-size: 0.8rem; background: var(--dark2);">
+  &copy; 2026 HBM — Handball Club Mouy
 </footer>
 
 <script>
@@ -308,16 +275,16 @@ form.addEventListener('submit', async function(e) {
     if (response.ok) {
       successMsg.style.display = 'block';
       form.reset();
-      btnSubmit.innerText = 'ENVOYÉ !';
+      btnSubmit.innerText = 'C\'EST REÇU !';
     } else {
       alert("Une erreur est survenue.");
       btnSubmit.disabled = false;
-      btnSubmit.innerText = 'ENVOYER MA DEMANDE';
+      btnSubmit.innerText = 'RÉESSAYER';
     }
   } catch (error) {
     alert("Vérifiez votre connexion.");
     btnSubmit.disabled = false;
-    btnSubmit.innerText = 'ENVOYER MA DEMANDE';
+    btnSubmit.innerText = 'RÉESSAYER';
   }
 });
 
@@ -351,7 +318,6 @@ function lancerAnimationSupporter() {
             setTimeout(() => ball.remove(), 2500);
         }, 100);
     }
-
     const msg = document.createElement('div');
     msg.innerText = "ALLEZ MOUY ! 💚";
     msg.style.position = 'fixed';
@@ -359,12 +325,11 @@ function lancerAnimationSupporter() {
     msg.style.left = '50%';
     msg.style.transform = 'translate(-50%, -50%)';
     msg.style.fontFamily = 'var(--font-display)';
-    msg.style.fontSize = 'clamp(2rem, 8vw, 5rem)';
+    msg.style.fontSize = 'clamp(3rem, 10vw, 6rem)';
     msg.style.color = 'var(--green-bright)';
-    msg.style.textShadow = '0 0 20px rgba(61, 220, 61, 0.8)';
+    msg.style.textShadow = '0 0 30px rgba(61, 220, 61, 1)';
     msg.style.zIndex = '10000';
     msg.style.pointerEvents = 'none';
-    msg.style.textAlign = 'center';
     document.body.appendChild(msg);
     setTimeout(() => {
         msg.style.opacity = '0';
