@@ -54,11 +54,37 @@ nav {
 .nav-logo img { height: 45px; width: auto; }
 .nav-logo-text { font-family: var(--font-display); font-size: 1.4rem; color: var(--green-light); letter-spacing: 0.05em; }
 
-.nav-links { display: flex; gap: 1.5rem; list-style: none; }
+.nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
 .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; transition: 0.3s; position: relative; }
 .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background: var(--green-bright); transition: 0.3s; }
 .nav-links a:hover { color: var(--green-bright); }
-.nav-links a:hover::after { width: 100%; }
+.nav-links a:hover::after { width: 100% !important; }
+
+/* DROPDOWN LOGIC */
+.dropdown { position: relative; }
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--dark2);
+  min-width: 200px;
+  border: 1px solid rgba(34,139,34,0.3);
+  border-top: 2px solid var(--green-bright);
+  padding: 0.5rem 0;
+  list-style: none;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+.dropdown-content li a::after { display: none; }
+.dropdown-content li a {
+  padding: 0.7rem 1.2rem;
+  font-size: 0.75rem;
+  display: block;
+  text-transform: none;
+  letter-spacing: 0.05em;
+}
+.dropdown-content li a:hover { background: rgba(34,139,34,0.1); }
+.dropdown:hover .dropdown-content { display: block; }
 
 /* BURGER MENU */
 .burger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 1100; }
@@ -152,6 +178,17 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--g
   .nav-links a { font-size: 1.8rem; font-family: var(--font-display); }
   .about { grid-template-columns: 1fr; padding: 60px 1.5rem; text-align: center; }
   
+  .dropdown-content { 
+    position: static; 
+    display: block; 
+    background: transparent; 
+    border: none; 
+    box-shadow: none; 
+    text-align: center;
+    padding: 0;
+  }
+  .dropdown-content li a { font-size: 1.2rem !important; color: var(--muted); }
+
   .burger.toggle .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
   .burger.toggle .line2 { opacity: 0; }
   .burger.toggle .line3 { transform: rotate(45deg) translate(-5px, -6px); }
@@ -189,7 +226,14 @@ footer { text-align: center; padding: 40px; color: var(--muted); font-size: 0.8r
     <li><a href="equipes.html">Équipes</a></li>
     <li><a href="inscriptions.html">Inscriptions</a></li>
     <li><a href="partenaires.html">Partenaires</a></li>
-    <li><a href="monclub.html">Mon Club</a></li>
+    <li class="dropdown">
+      <a href="#">Saison ▾</a>
+      <ul class="dropdown-content">
+        <li><a href="planning.html">Planning des entraînements</a></li>
+        <li><a href="effectifs.html">Effectifs</a></li>
+        <li><a href="prepa-physique.html">Prépa Physique</a></li>
+      </ul>
+    </li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
