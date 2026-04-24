@@ -40,7 +40,9 @@
 
 html { scroll-behavior: smooth; }
 body {
-  background: var(--dark);
+  /* MODIFICATION DU FOND ICI : Dégradé inspiré du maillot */
+  background: radial-gradient(circle at center, #1a2e15 0%, var(--dark) 100%);
+  background-attachment: fixed;
   color: var(--white);
   font-family: var(--font-body);
   font-weight: 300;
@@ -111,7 +113,8 @@ nav {
   justify-content: center;
   text-align: center;
   padding: 120px 20px 60px;
-  background: radial-gradient(circle at center, rgba(34,139,34,0.1) 0%, transparent 70%);
+  /* Ajustement de l'éclat central pour qu'il se fonde dans le nouveau background */
+  background: radial-gradient(circle at center, rgba(34,139,34,0.15) 0%, transparent 70%);
 }
 .hero-logo {
   width: min(320px, 70vw);
@@ -126,7 +129,8 @@ nav {
 /* --- ABOUT SECTION --- */
 .about { 
   padding: 120px 3rem; 
-  background: var(--dark); 
+  /* Fond légèrement transparent pour laisser deviner le dégradé du body */
+  background: rgba(10, 15, 8, 0.4); 
   display: grid; 
   grid-template-columns: 1fr 1fr; 
   gap: 4rem; 
@@ -144,7 +148,7 @@ h2 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); line
 }
 .about-griffe {
   width: 100%;
-  max-width: 250px; /* RÉDUCTION DE LA TAILLE ICI */
+  max-width: 250px;
   height: auto;
   filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.4));
   animation: floatSimple 6s ease-in-out infinite;
@@ -164,13 +168,14 @@ h2 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); line
   text-align: center;
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(5px);
 }
 .stat-card:hover { transform: translateY(-10px); border-color: var(--green-bright); background: rgba(34,139,34,0.05); }
 .stat-number { font-family: var(--font-display); font-size: 3rem; color: var(--green-bright); line-height: 1; }
 .stat-label { font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
 
 /* --- FORM SECTION --- */
-.form-section { background: var(--dark2); padding: 120px 20px; border-top: 1px solid rgba(34,139,34,0.15); position: relative; }
+.form-section { background: rgba(18, 26, 14, 0.8); padding: 120px 20px; border-top: 1px solid rgba(34,139,34,0.15); position: relative; }
 .form-container { max-width: 700px; margin: 0 auto; z-index: 2; position: relative; }
 label { display: block; margin-bottom: 5px; font-size: 0.9rem; color: var(--muted); }
 input, select, textarea { 
@@ -239,11 +244,11 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--g
 @keyframes slideIn { from { transform: translateX(-50px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
 /* --- FOOTER & SOCIAL --- */
-.contact-bar { padding: 4rem 3rem; background: var(--dark); border-top: 1px solid rgba(255,255,255,0.05); text-align: center; }
+.contact-bar { padding: 4rem 3rem; background: rgba(10, 15, 8, 0.6); border-top: 1px solid rgba(255,255,255,0.05); text-align: center; }
 .social-group { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
 .social-link { color: var(--green-bright); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: 0.3s; }
 .social-link:hover { color: white; transform: translateY(-3px); }
-footer { text-align: center; padding: 40px; color: var(--muted); font-size: 0.8rem; background: var(--dark2); }
+footer { text-align: center; padding: 40px; color: var(--muted); font-size: 0.8rem; background: rgba(18, 26, 14, 0.9); }
 </style>
 </head>
 <body>
