@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini-Jeu HBM - Le Défi des 7m</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark: #0a0f08;
+            --green-bright: #3ddc3d;
+            --gold: #d4af37;
+        }
+
+        body {
+            margin: 0;
+            background: radial-gradient(circle at center, #1a2e15 0%, var(--dark) 100%);
+            color: white;
+            font-family: 'DM Sans', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        h1 { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--green-bright); margin-bottom: 10px; }
+        
+        #game-container {
+            position: relative;
+            width: 400px;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid var(--green-bright);
+            border-radius: 8px;
+            cursor: crosshair;
+            overflow: hidden;
+        }
+
+        /* Le But */
+        #goal {
+            position: absolute;
+            top: 20px;
+            left: 50px;
+            width: 300px;
+            height: 150px;
+            border: 5px solid white;
+            border-bottom: none;
+            background: repeating-linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.1) 10px, transparent 10px, transparent 20px);
+        }
+
+        /* Le Gardien */
+        #keeper {
+            position: absolute;
+            top: 80px;
+            left: 175px;
+            width: 50px;
+            height: 70px;
+            background: var(--gold);
+            border-radius: 5px;
+            transition: left 0.1s linear;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        /* Le Ballon */
+        #ball {
+            position: absolute;
+            bottom: 30px;
+            left: 185px;
+            width: 30px;
+            height: 30px;
+            background: #ff8c00;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 140, 0, 0.8);
+        }
+
+        #score-board { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; margin-top: 20px; }
+        
+        .btn-back {
+            margin-top: 20px;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>LE DÉFI DES 7 MÈTRES</h1>
+    <p>Clique pour tirer au moment où le ballon est aligné !</p>
+
+    <div id="game-container">
+        <div id="goal"></div>
+        <div id="keeper">🧤</div>
+        <div id="ball"></div>
+    </div>
+
+    <div id="score-board">SCORE: <span id="score">0</span> | RECORD: <span id="high-score">0</span></div>
+    
+    <a href="index.html" class="btn-back">← Retour au site</a>
+
+    <script>
+        const ball = document.getElementById('ball');
+        const keeper = document.getElementById('keeper');
+        const scoreEl = document.getElementById('score');
+        const highScoreEl = document.getElementById('high-score');
+        const container = document.getElementById('game-container');
+
+        let score = 0;
+        let highScore = localStorage.getItem('hbm-score') || 0;
+        highScoreEl.innerText = highScore;
+
+        let ballX = 185;
+        let ballDirection = 1;
+        let isShooting = false;
+        let keeperX = 175;
+        let keeperDirection = 1;
+        let gameSpeed = 3;
+
+        // Animation du ballon (balayage horizontal)
+        function moveBall() {
+            if (!isShooting) {
+                ballX += ballDirection * gameSpeed;
+                if (ballX > 370 || ballX < 0) ballDirection *= -1;
+                ball.style.left = ballX + 'px';
+            }
+            requestAnimationFrame(moveBall);
+        }
+
+        // Animation du gardien
+        function moveKeeper() {
+            keeperX += keeperDirection * (gameSpeed * 0.8);
+            if (keeperX > 300 || keeperX < 50) keeperDirection *= -1;
+            keeper.style.left = keeperX + 'px';
+            requestAnimationFrame(moveKeeper);
+        }
+
+        // Tir
+        container.addEventListener('mousedown', () => {
+            if (isShooting) return;
+            isShooting = true;
+            
+            let targetBottom = 400; // Distance à parcourir
+            ball.style.transition = "bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+            ball.style.bottom = "400px";
+
+            setTimeout(() => {
+                checkCollision();
+            }, 400);
+        });
+
+        function checkCollision() {
+            const ballRect = ball.getBoundingClientRect();
+            const keeperRect = keeper.getBoundingClientRect();
+            const goalRect = document.getElementById('goal').getBoundingClientRect();
+
+            // Si le gardien touche le ballon
+            if (ballRect.left < keeperRect.right && ballRect.right > keeperRect.left) {
+                alert("ARRÊT DU GARDIEN ! 🧤");
+                resetGame();
+            } 
+            // Si c'est dans le but
+            else if (ballRect.left > goalRect.left && ballRect.right < goalRect.right) {
+                score++;
+                scoreEl.innerText = score;
+                if (score > highScore) {
+                    highScore = score;
+                    localStorage.setItem('hbm-score', highScore);
+                    highScoreEl.innerText = highScore;
+                }
+                gameSpeed += 0.3; // Augmente la difficulté
+                returnToStart();
+            } else {
+                alert("À CÔTÉ ! ❌");
+                resetGame();
+            }
+        }
+
+        function returnToStart() {
+            ball.style.transition = "none";
+            ball.style.bottom = "30px";
+            isShooting = false;
+        }
+
+        function resetGame() {
+            score = 0;
+            scoreEl.innerText = score;
+            gameSpeed = 3;
+            returnToStart();
+        }
+
+        moveBall();
+        moveKeeper();
+    </script>
+</body>
+</html>
