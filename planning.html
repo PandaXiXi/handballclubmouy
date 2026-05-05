@@ -1,25 +1,241 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<link rel="icon" type="image/png" href="images/logo.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>En construction - HBM</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+<title>Planning & Rencontres - HBM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root { --dark: #0a0f08; --green: #2db82d; --white: #f0f5f0; }
-body { background: var(--dark); color: var(--white); font-family: 'DM Sans', sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; text-align: center; margin: 0; }
-.container { padding: 20px; }
-h1 { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: var(--green); letter-spacing: 2px; }
-p { font-size: 1.2rem; color: #7a9a7a; margin-bottom: 2rem; }
-.btn-back { border: 1px solid var(--green); color: var(--green); padding: 10px 25px; text-decoration: none; text-transform: uppercase; font-size: 0.9rem; transition: 0.3s; }
-.btn-back:hover { background: var(--green); color: white; }
+/* --- STYLES COMMUNS --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --dark: #0a0f08;
+  --dark2: #121a0e;
+  --green-mid: #228b22;
+  --green-bright: #3ddc3d;
+  --white: #f0f5f0;
+  --muted: #7a9a7a;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --gold: #d4af37;
+}
+
+body {
+  /* FOND DÉGRADÉ COHÉRENT */
+  background: radial-gradient(circle at center, #1a2e15 0%, var(--dark) 100%);
+  background-attachment: fixed;
+  color: var(--white);
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+/* --- NAVIGATION --- */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 3rem;
+  background: rgba(10,15,8,0.85);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(34,139,34,0.25);
+}
+.nav-logo { display: flex; align-items: center; gap: 0.8rem; text-decoration: none; color: inherit; }
+.nav-logo img { height: 45px; }
+.nav-logo-text { font-family: var(--font-display); font-size: 1.4rem; color: var(--green-bright); }
+
+.nav-links { display: flex; gap: 1.5rem; list-style: none; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; transition: 0.3s; }
+.nav-links a:hover { color: var(--green-bright); }
+
+/* --- HEADER --- */
+.page-header {
+  padding: 150px 20px 60px;
+  text-align: center;
+}
+h1 { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 5rem); letter-spacing: 2px; margin-bottom: 10px; }
+
+/* --- MATCH CARD (LE CHOC) --- */
+.planning-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px 100px;
+}
+
+.match-card {
+  background: rgba(18, 26, 14, 0.8);
+  border: 1px solid var(--green-mid);
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 50px;
+}
+
+.match-card::before {
+  content: "PROCHAIN MATCH";
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gold);
+  color: var(--dark);
+  padding: 2px 15px;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  border-radius: 20px;
+}
+
+.match-vs {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 40px 0;
+}
+
+.team {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.team-name { font-family: var(--font-display); font-size: 2.5rem; }
+.team-logo { width: 100px; height: 100px; object-fit: contain; filter: drop-shadow(0 0 10px rgba(255,255,255,0.1)); }
+
+.vs-circle {
+  width: 60px;
+  height: 60px;
+  background: var(--green-bright);
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.match-details {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 20px;
+  color: var(--muted);
+}
+
+.match-info-item {
+  display: inline-block;
+  margin: 0 15px;
+  font-size: 1.1rem;
+}
+
+.match-info-item strong { color: var(--white); }
+
+/* --- LISTE DES AUTRES DATES --- */
+.schedule-list {
+  background: rgba(255,255,255,0.03);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.schedule-item {
+  display: grid;
+  grid-template-columns: 120px 1fr 150px;
+  padding: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  align-items: center;
+}
+
+.date-box { font-family: var(--font-display); color: var(--green-bright); font-size: 1.2rem; }
+.event-name { font-weight: 500; }
+.event-type { font-size: 0.8rem; text-transform: uppercase; color: var(--muted); text-align: right; }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 700px) {
+  .match-vs { flex-direction: column; gap: 20px; }
+  .schedule-item { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .event-type { text-align: left; grid-column: span 2; }
+}
 </style>
 </head>
 <body>
-<div class="container">
-    <h1>PAGE EN CONSTRUCTION</h1>
-    <p>Le club HBM se prépare. Cette page sera bientôt disponible !</p>
-    <a href="index.html" class="btn-back">Retour à l'accueil</a>
-</div>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="images/logo.png" alt="HBM">
+    <span class="nav-logo-text">HBM</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="actualites.html">Actualités</a></li>
+    <li><a href="planning.html" style="color: var(--green-bright);">Planning</a></li>
+    <li><a href="inscriptions.html">Inscriptions</a></li>
+  </ul>
+</nav>
+
+<header class="page-header">
+  <h1>CALENDRIER</h1>
+  <p style="color: var(--muted);">Les rendez-vous de la saison 2026-2027</p>
+</header>
+
+<main class="planning-container">
+
+  <!-- LE MATCH CONTRE MÉRU -->
+  <div class="match-card">
+    <div class="match-vs">
+      <div class="team">
+        <img src="images/logo.png" class="team-logo" alt="HBM">
+        <span class="team-name">HB MOUY</span>
+      </div>
+      
+      <div class="vs-circle">VS</div>
+
+      <div class="team">
+        <img src="images/logonb.png" class="team-logo" alt="Méru" style="filter: grayscale(1) brightness(2);">
+        <span class="team-name">MÉRU</span>
+      </div>
+    </div>
+
+    <div class="match-details">
+      <div class="match-info-item">📅 Mercredi <strong>20 Mai 2026</strong></div>
+      <div class="match-info-item">📍 Lieu <strong>À confirmer</strong></div>
+      <div class="match-info-item">⏰ Heure <strong>20h00</strong></div>
+    </div>
+  </div>
+
+  <h2 style="font-family: var(--font-display); margin-bottom: 20px;">AUTRES RENDEZ-VOUS</h2>
+  
+  <div class="schedule-list">
+    <div class="schedule-item">
+      <div class="date-box">25 AVRIL</div>
+      <div class="event-name">Réunion de structuration du bureau</div>
+      <div class="event-type">Interne</div>
+    </div>
+    <div class="schedule-item">
+      <div class="date-box">JUIN 2026</div>
+      <div class="event-name">Ouverture officielle des licences FFHB</div>
+      <div class="event-type">Administratif</div>
+    </div>
+    <div class="schedule-item">
+      <div class="date-box">SEPT 2026</div>
+      <div class="event-name">Reprise des entraînements & Forum des associations</div>
+      <div class="event-type">Événement</div>
+    </div>
+  </div>
+
+</main>
+
+<footer style="text-align: center; padding: 60px; color: var(--muted); font-size: 0.8rem;">
+  &copy; 2026 HBM — Handball Club Mouy
+</footer>
+
 </body>
 </html>
