@@ -6,167 +6,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actualités - HBM</title>
 
-    <!-- META TAGS POUR L'ACTU DU MATCH (Modifiables à chaque partage) -->
-    <meta property="og:title" content="Préparation de la nouvelle saison : Méru Loisir vs Mouy le 20 Mai !">
+    <!-- META TAGS MIS À JOUR -->
+    <meta property="og:title" content="CHOC DES LIONS : Méru vs Mouy le 20 Mai !">
     <meta property="og:description" content="Le HBM défie l'équipe Loisir de Méru pour leur premier match de préparation !">
-    <meta property="og:image" content="images/meruvsmouy"> <!-- Ou une affiche de match si tu en as une -->
+    <meta property="og:image" content="images/meruvsmouy.png"> 
     <meta property="og:url" content="https://tonsite.github.io/actualites.html">
     <meta name="twitter:card" content="summary_large_image">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+    
     <style>
-        /* --- STYLES COMMUNS --- */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
             --dark: #0a0f08;
-            --dark2: #121a0e;
             --green-mid: #228b22;
             --green-bright: #3ddc3d;
             --white: #f0f5f0;
             --muted: #7a9a7a;
             --font-display: 'Bebas Neue', sans-serif;
-            --font-body: 'DM Sans', sans-serif;
             --gold: #d4af37;
         }
         body {
             background: radial-gradient(circle at center, #1a2e15 0%, var(--dark) 100%);
             background-attachment: fixed;
             color: var(--white);
-            font-family: var(--font-body);
+            font-family: 'DM Sans', sans-serif;
             line-height: 1.6;
         }
 
-        /* --- NAVIGATION --- */
         nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 3rem;
-            background: rgba(10,15,8,0.85);
-            backdrop-filter: blur(15px);
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 3rem; background: rgba(10,15,8,0.85); backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(34,139,34,0.25);
         }
         .nav-logo { display: flex; align-items: center; gap: 0.8rem; text-decoration: none; color: inherit; }
         .nav-logo img { height: 45px; }
         .nav-logo-text { font-family: var(--font-display); font-size: 1.4rem; color: var(--green-bright); }
+        
+        .page-header { padding: 150px 20px 40px; text-align: center; }
+        h1 { font-family: var(--font-display); font-size: 4rem; letter-spacing: 2px; }
 
-        .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
-        .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; transition: 0.3s; }
-        .nav-links a:hover { color: var(--green-bright); }
-
-        .dropdown { position: relative; }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: var(--dark2);
-            min-width: 200px;
-            border: 1px solid rgba(34,139,34,0.3);
-            border-top: 2px solid var(--green-bright);
-            padding: 0.5rem 0;
-            list-style: none;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
-        .dropdown:hover .dropdown-content { display: block; }
-        .dropdown-content li a { padding: 0.7rem 1.2rem; font-size: 0.75rem !important; }
-
-        .burger { display: none; cursor: pointer; flex-direction: column; gap: 6px; }
-        .burger div { width: 28px; height: 2px; background: var(--green-bright); }
-
-        /* --- HEADER PAGE --- */
-        .page-header {
-            padding: 150px 20px 60px;
-            text-align: center;
-            background: linear-gradient(to bottom, rgba(34,139,34,0.15), transparent);
-        }
-        h1 { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 5rem); letter-spacing: 2px; }
-
-        /* --- GRILLE D'ACTUS --- */
         .news-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 40px 20px 100px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
+            max-width: 1100px; margin: 0 auto; padding: 20px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem;
         }
-
         .news-card {
-            background: rgba(18, 26, 14, 0.6);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 4px;
-            overflow: hidden;
-            transition: 0.4s;
-            display: flex;
-            flex-direction: column;
-            backdrop-filter: blur(5px);
+            background: rgba(18, 26, 14, 0.6); border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 4px; overflow: hidden; display: flex; flex-direction: column;
+            transition: 0.3s ease;
         }
-        .news-card:hover { transform: translateY(-10px); border-color: var(--green-mid); }
-
-        /* Style Spécial pour la "Une" */
-        .featured {
-            grid-column: 1 / -1;
-            border: 2px solid var(--gold);
-            background: rgba(212, 175, 55, 0.05);
-        }
-
-        .news-img {
-            width: 100%;
-            height: 200px;
-            background: #1a2514;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-        .news-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
-
-        .badge {
-            position: absolute;
-            top: 15px; left: 15px;
-            background: var(--green-mid);
-            color: white;
-            padding: 4px 12px;
-            font-family: var(--font-display);
-            font-size: 0.9rem;
-            z-index: 2;
-        }
-
+        .featured { grid-column: 1 / -1; border: 2px solid var(--gold); }
+        .news-img { height: 200px; background: #1a2514; display: flex; align-items: center; justify-content: center; position: relative; }
+        .news-img img { width: 100%; height: 100%; object-fit: contain; padding: 20px; }
+        .badge { position: absolute; top: 15px; left: 15px; background: var(--green-mid); padding: 4px 12px; font-family: var(--font-display); z-index: 2;}
+        
         .news-content { padding: 25px; flex-grow: 1; }
-        .news-date { color: var(--green-bright); font-size: 0.8rem; margin-bottom: 10px; display: block; }
-        .news-title { font-family: var(--font-display); font-size: 1.8rem; line-height: 1.2; margin-bottom: 15px; }
-        .news-excerpt { color: var(--muted); font-size: 0.95rem; margin-bottom: 20px; }
+        .news-date { color: var(--green-bright); font-size: 0.8rem; margin-bottom: 5px; display: block; }
+        .news-title { font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 10px; }
+        .news-excerpt { color: var(--muted); font-size: 0.9rem; }
 
-        .read-more {
-            color: var(--white);
-            text-decoration: none;
-            font-family: var(--font-display);
-            font-size: 1.1rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
+        .old-news { display: none; }
+        
+        .archive-section { text-align: center; padding: 50px 0 100px; }
+        .load-btn {
+            background: transparent; border: 1px solid var(--green-mid);
+            color: var(--white); padding: 12px 30px; cursor: pointer;
+            font-family: var(--font-display); font-size: 1.2rem; transition: 0.3s;
         }
-
-        /* --- FOOTER --- */
-        footer { text-align: center; padding: 60px; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.05); }
-
-        @media (max-width: 950px) {
-            .burger { display: flex; }
-            .nav-links {
-                position: fixed;
-                right: -100%; top: 0; height: 100vh; width: 100%;
-                background: var(--dark);
-                flex-direction: column;
-                align-items: center; justify-content: center;
-                transition: 0.5s;
-            }
-            .nav-links.active { right: 0; }
-        }
+        .load-btn:hover { background: var(--green-mid); box-shadow: 0 0 15px var(--green-mid); }
     </style>
 </head>
 <body>
@@ -176,107 +85,98 @@
         <img src="images/logo.png" alt="HBM">
         <span class="nav-logo-text">HBM</span>
     </a>
-    <div class="burger" id="burger">
-        <div></div><div></div><div></div>
-    </div>
-    <ul class="nav-links" id="nav-links">
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="actualites.html" style="color: var(--green-bright);">Actualités</a></li>
-        <li class="dropdown">
-            <a href="#">Saison ▾</a>
-            <ul class="dropdown-content">
-                <li><a href="planning.html">Planning</a></li>
-                <li><a href="effectifs.html">Effectifs</a></li>
-                <li><a href="prepa-physique.html">Prépa Physique</a></li>
-                <li><a href="jeu.html">Le Jeu 🎮</a></li>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#">Le Club ▾</a>
-            <ul class="dropdown-content">
-                <li><a href="qui.html">Qui sommes-nous ?</a></li>
-                <li><a href="organigramme.html">Le Bureau</a></li>
-                <li><a href="docs.html">Documents utiles</a></li>
-            </ul>
-        </li>
-        <li><a href="inscriptions.html">Inscriptions</a></li>
-        <li><a href="partenaires.html">Partenaires</a></li>
-    </ul>
 </nav>
 
 <header class="page-header">
-    <h1>L'ÉCHO DU TERRAIN</h1>
-    <p style="color: var(--muted);">Suivez l'aventure des Lions du HB Mouy.</p>
+    <h1>ACTUALITÉS</h1>
 </header>
 
 <main class="news-container">
-
-    <!-- LA "UNE" : MATCH CONTRE MÉRU -->
+    <!-- ACTU DU MATCH (MISE À JOUR) -->
     <article class="news-card featured">
-        <div class="news-img" style="height: 300px; background: url('images/meruvsmouy') center/contain no-repeat, rgba(0,0,0,0.4);">
-            <div class="badge" style="background: var(--gold); color: black;">ÉVÉNEMENT</div>
+        <div class="news-img" style="height: 350px;">
+            <div class="badge" style="background: var(--gold); color: black;">MATCH DE PREPA</div>
+            <img src="images/meruvsmouy.png">
         </div>
         <div class="news-content" style="text-align: center;">
-            <span class="news-date">PUBLIÉ LE 05 MAI 2026</span>
+            <span class="news-date">05 MAI 2026</span>
             <h2 class="news-title" style="font-size: 3rem;">MATCH DE PREPA : MÉRU LOISIR vs HBM</h2>
             <p class="news-excerpt" style="font-size: 1.2rem; max-width: 800px; margin: 0 auto 20px;">Nos joueurs se déplacent à Méru pour un match amical contre l'équipe Loisir. Une belle oportunité pour jauger notre collectif et intégrer les nouveaux arrivants ! </p>
             <div style="margin-bottom: 25px;">
                 <span style="display: block; color: var(--gold); font-family: var(--font-display); font-size: 1.5rem;">📅 MERCREDI 20 MAI — 20H00</span>
-                <span style="color: var(--muted);">📍 Gymnase de Méru</span>
             </div>
-            <a href="planning.html" class="read-more" style="justify-content: center; border: 1px solid var(--gold); padding: 10px 20px;">DÉTAILS DU MATCH →</a>
         </div>
     </article>
 
-    <!-- ACTU : CERCLE VERT -->
+    <!-- AUTRES ACTUS RÉCENTES -->
     <article class="news-card">
         <div class="news-img">
             <div class="badge">SPONSOR</div>
-            <img src="images/cerclevert.png" style="object-fit: contain; padding: 20px;">
+            <img src="images/cerclevert.png">
         </div>
         <div class="news-content">
             <span class="news-date">04 MAI 2026</span>
-            <h2 class="news-title">BIENVENUE AU GROUPE CERCLE VERT !</h2>
-            <p class="news-excerpt">Le HBM ne s'arrête plus ! Le GROUPE CERCLE VERT devient notre 5ème partenaire officiel.</p>
-            <a href="partenaires.html" class="read-more">VOIR NOS PARTENAIRES →</a>
+            <h2 class="news-title">GROUPE CERCLE VERT</h2>
+            <p class="news-excerpt">Bienvenue à notre 5ème sponsor officiel !</p>
         </div>
     </article>
 
-    <!-- ACTU : RÉUNION -->
     <article class="news-card">
         <div class="news-img">
             <div class="badge">CLUB</div>
-            <img src="images/logonb.png" style="object-fit: contain; padding: 20px;">
+            <img src="images/logonb.png">
         </div>
         <div class="news-content">
             <span class="news-date">24 AVRIL 2026</span>
-            <h2 class="news-title">Réunion de Bureau</h2>
-            <p class="news-excerpt">Structuration du club, choix du matériel et finalisation des maillots étaient au programme.</p>
-            <a href="#" class="read-more">EN SAVOIR PLUS →</a>
+            <h2 class="news-title">RÉUNION DU BUREAU</h2>
+            <p class="news-excerpt">Validation des maillots et équipements saison 2026.</p>
         </div>
     </article>
 
-    <!-- AUTRES SPONSORS (RACCOURCIS) -->
-    <article class="news-card">
-        <div class="news-img"><img src="images/klein.png" style="object-fit: contain; padding: 20px;"></div>
+    <!-- ARCHIVES (CACHÉES) -->
+    <article class="news-card old-news">
+        <div class="news-img"><div class="badge">SPONSOR</div><img src="images/klein.png"></div>
         <div class="news-content">
             <span class="news-date">24 AVRIL 2026</span>
-            <h2 class="news-title">KLEIN EXPERTISE REJOINT L'ÉQUIPE</h2>
-            <a href="partenaires.html" class="read-more">PARTENAIRES →</a>
+            <h2 class="news-title">KLEIN EXPERTISE</h2>
         </div>
     </article>
 
+    <article class="news-card old-news">
+        <div class="news-img"><div class="badge">SPONSOR</div><img src="images/tvm.png"></div>
+        <div class="news-content">
+            <span class="news-date">22 AVRIL 2026</span>
+            <h2 class="news-title">TVM TECHNOLOGIE</h2>
+        </div>
+    </article>
+
+    <article class="news-card old-news">
+        <div class="news-img"><div class="badge">SPONSOR</div><img src="images/sirocco.png"></div>
+        <div class="news-content">
+            <span class="news-date">17 AVRIL 2026</span>
+            <h2 class="news-title">SIROCCO</h2>
+        </div>
+    </article>
+
+    <article class="news-card old-news">
+        <div class="news-img"><div class="badge">SPONSOR</div><img src="images/lv-chauff.png"></div>
+        <div class="news-content">
+            <span class="news-date">16 AVRIL 2026</span>
+            <h2 class="news-title">LV CHAUFF</h2>
+        </div>
+    </article>
 </main>
 
-<footer>
-    &copy; 2026 HBM — Handball Club Mouy — Ensemble vers la victoire.
-</footer>
+<div class="archive-section">
+    <button class="load-btn" id="loadMoreBtn">VOIR TOUTES LES ACTUALITÉS</button>
+</div>
 
 <script>
-    const burger = document.getElementById('burger');
-    const navLinks = document.getElementById('nav-links');
-    burger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
+    const btn = document.getElementById('loadMoreBtn');
+    const oldNews = document.querySelectorAll('.old-news');
+    btn.addEventListener('click', () => {
+        oldNews.forEach(news => { news.style.display = 'flex'; });
+        btn.style.display = 'none';
     });
 </script>
 
