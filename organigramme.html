@@ -27,7 +27,7 @@
             line-height: 1.6;
         }
 
-        /* --- NAVIGATION --- */
+        /* --- NAVIGATION COMPLÈTE RÉINTÉGRÉE --- */
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
             display: flex; align-items: center; justify-content: space-between;
@@ -37,9 +37,20 @@
         .nav-logo { display: flex; align-items: center; gap: 0.8rem; text-decoration: none; color: inherit; }
         .nav-logo img { height: 45px; }
         .nav-logo-text { font-family: var(--font-display); font-size: 1.4rem; color: var(--green-bright); }
+
         .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
-        .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; transition: 0.3s; }
+        .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; transition: 0.3s; }
         .nav-links a:hover { color: var(--green-bright); }
+
+        .dropdown { position: relative; }
+        .dropdown-content {
+            display: none; position: absolute; top: 100%; left: 0;
+            background: var(--dark2); min-width: 200px;
+            border: 1px solid rgba(34,139,34,0.3); border-top: 2px solid var(--green-bright);
+            padding: 0.5rem 0; list-style: none;
+        }
+        .dropdown:hover .dropdown-content { display: block; }
+        .dropdown-content li a { padding: 0.7rem 1.2rem; display: block; font-size: 0.75rem !important; }
 
         /* --- STRUCTURE ORGANIGRAMME --- */
         .page-header { padding: 150px 20px 40px; text-align: center; }
@@ -74,10 +85,8 @@
         .member-name { font-family: var(--font-display); font-size: 1.8rem; letter-spacing: 1px; color: var(--white); margin-bottom: 5px; }
         .member-role { color: var(--gold); text-transform: uppercase; font-size: 0.8rem; font-weight: 700; display: block; }
 
-        /* Styles spéciaux hiérarchie */
         .boss { width: 320px; border: 1px solid var(--gold); background: rgba(212, 175, 55, 0.05); }
         .boss .member-avatar { border-color: var(--gold); color: var(--gold); width: 110px; height: 110px; font-size: 2.8rem; }
-        
         .vice { border: 1px solid var(--green-bright); }
     </style>
 </head>
@@ -91,6 +100,24 @@
     <ul class="nav-links">
         <li><a href="index.html">Accueil</a></li>
         <li><a href="actualites.html">Actualités</a></li>
+        <li class="dropdown">
+            <a href="#">Saison ▾</a>
+            <ul class="dropdown-content">
+                <li><a href="planning.html">Planning</a></li>
+                <li><a href="effectifs.html">Effectifs</a></li>
+                <li><a href="prepa-physique.html">Prépa Physique</a></li>
+                <li><a href="jeu.html">Le Jeu 🎮</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" style="color: var(--green-bright);">Le Club ▾</a>
+            <ul class="dropdown-content">
+                <li><a href="qui.html">Qui sommes-nous ?</a></li>
+                <li><a href="organigramme.html">Le Bureau</a></li>
+                <li><a href="docs.html">Documents utiles</a></li>
+            </ul>
+        </li>
+        <li><a href="inscriptions.html">Inscriptions</a></li>
         <li><a href="partenaires.html">Partenaires</a></li>
     </ul>
 </nav>
