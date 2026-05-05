@@ -1,399 +1,349 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<link rel="icon" type="image/png" href="images/logo.png">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Actualités - HBM</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-/* --- STYLES COMMUNS --- */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --dark: #0a0f08;
-  --dark2: #121a0e;
-  --green-mid: #228b22;
-  --green-bright: #3ddc3d;
-  --white: #f0f5f0;
-  --muted: #7a9a7a;
-  --font-display: 'Bebas Neue', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
-}
-body {
-  /* MODIFICATION DU FOND : Dégradé radial inspiré du maillot */
-  background: radial-gradient(circle at center, #1a2e15 0%, var(--dark) 100%);
-  background-attachment: fixed;
-  color: var(--white);
-  font-family: var(--font-body);
-  line-height: 1.6;
-}
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualités - HBM</title>
 
-/* --- NAVIGATION --- */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 3rem;
-  background: rgba(10,15,8,0.85);
-  backdrop-filter: blur(15px);
-  border-bottom: 1px solid rgba(34,139,34,0.25);
-}
-.nav-logo { display: flex; align-items: center; gap: 0.8rem; text-decoration: none; color: inherit; z-index: 1100; }
-.nav-logo img { height: 45px; }
-.nav-logo-text { font-family: var(--font-display); font-size: 1.4rem; color: var(--green-bright); letter-spacing: 1px; }
+    <!-- META TAGS POUR LES RÉSEAUX SOCIAUX (Open Graph) -->
+    <meta property="og:title" content="Handball Club Mouy - L'actualité des Lions">
+    <meta property="og:description" content="Suivez l'évolution du HBM : nouveaux sponsors, matchs et vie du club.">
+    <meta property="og:image" content="images/logonb.png"> 
+    <meta property="og:type" content="website">
 
-.nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
-.nav-links a { color: var(--muted); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; transition: 0.3s; position: relative; }
-.nav-links a:hover { color: var(--green-bright); }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* --- STYLES COMMUNS --- */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --dark: #0a0f08;
+            --dark2: #121a0e;
+            --green-mid: #228b22;
+            --green-bright: #3ddc3d;
+            --white: #f0f5f0;
+            --muted: #7a9a7a;
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+        }
+        body {
+            background: radial-gradient(circle at center, #1a2e15 0%, var(--dark) 100%);
+            background-attachment: fixed;
+            color: var(--white);
+            font-family: var(--font-body);
+            line-height: 1.6;
+        }
 
-/* DROPDOWN LOGIC */
-.dropdown { position: relative; }
-.dropdown-content {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: var(--dark2);
-  min-width: 200px;
-  border: 1px solid rgba(34,139,34,0.3);
-  border-top: 2px solid var(--green-bright);
-  padding: 0.5rem 0;
-  list-style: none;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-}
-.dropdown-content li a {
-  padding: 0.7rem 1.2rem;
-  font-size: 0.75rem !important;
-  display: block;
-  text-transform: none;
-  letter-spacing: 0.05em;
-}
-.dropdown-content li a:hover { background: rgba(34,139,34,0.1); color: var(--green-bright); }
-.dropdown:hover .dropdown-content { display: block; }
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 3rem;
+            background: rgba(10,15,8,0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(34,139,34,0.25);
+        }
+        .nav-logo { display: flex; align-items: center; gap: 0.8rem; text-decoration: none; color: inherit; z-index: 1100; }
+        .nav-logo img { height: 45px; }
+        .nav-logo-text { font-family: var(--font-display); font-size: 1.4rem; color: var(--green-bright); letter-spacing: 1px; }
 
-/* BURGER */
-.burger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 1100; }
-.burger div { width: 28px; height: 2px; background: var(--green-bright); transition: 0.4s; }
+        .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
+        .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; transition: 0.3s; position: relative; }
+        .nav-links a:hover { color: var(--green-bright); }
 
-/* --- HEADER PAGE --- */
-.page-header {
-  padding: 150px 20px 60px;
-  text-align: center;
-  background: linear-gradient(to bottom, rgba(34,139,34,0.15), transparent);
-}
-h1 { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 5rem); letter-spacing: 2px; }
+        .dropdown { position: relative; }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--dark2);
+            min-width: 200px;
+            border: 1px solid rgba(34,139,34,0.3);
+            border-top: 2px solid var(--green-bright);
+            padding: 0.5rem 0;
+            list-style: none;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        .dropdown-content li a { padding: 0.7rem 1.2rem; font-size: 0.75rem !important; display: block; }
+        .dropdown:hover .dropdown-content { display: block; }
 
-/* --- GRILLE D'ACTUS --- */
-.news-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 40px 20px 100px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.5rem;
-}
+        .burger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 1100; }
+        .burger div { width: 28px; height: 2px; background: var(--green-bright); transition: 0.4s; }
 
-.news-card {
-  background: rgba(18, 26, 14, 0.6); /* Transparence pour laisser passer le dégradé */
-  border: 1px solid rgba(255,255,255,0.05);
-  border-radius: 4px;
-  overflow: hidden;
-  transition: 0.4s;
-  display: flex;
-  flex-direction: column;
-  backdrop-filter: blur(5px);
-}
-.news-card:hover {
-  transform: translateY(-10px);
-  border-color: var(--green-mid);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-}
+        /* --- HEADER PAGE --- */
+        .page-header {
+            padding: 150px 20px 60px;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(34,139,34,0.15), transparent);
+        }
+        h1 { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 5rem); letter-spacing: 2px; }
 
-.news-img {
-  width: 100%;
-  height: 200px;
-  background: #1a2514;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
-.news-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+        /* --- GRILLE D'ACTUS --- */
+        .news-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px 100px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
 
-.badge {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  background: var(--green-mid);
-  color: white;
-  padding: 4px 12px;
-  font-family: var(--font-display);
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-  z-index: 2;
-}
+        .news-card {
+            background: rgba(18, 26, 14, 0.6);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: 0.4s;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(5px);
+        }
+        .news-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--green-mid);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
 
-.news-content { padding: 25px; flex-grow: 1; }
-.news-date { color: var(--green-bright); font-size: 0.8rem; font-weight: 500; margin-bottom: 10px; display: block; }
-.news-title { font-family: var(--font-display); font-size: 1.8rem; line-height: 1.2; margin-bottom: 15px; }
-.news-excerpt { color: var(--muted); font-size: 0.95rem; margin-bottom: 20px; }
+        .news-img {
+            width: 100%;
+            height: 200px;
+            background: #1a2514;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .news-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
 
-.read-more {
-  color: var(--white);
-  text-decoration: none;
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  transition: 0.3s;
-}
-.read-more:hover { color: var(--green-bright); padding-left: 5px; }
+        .badge {
+            position: absolute;
+            top: 15px; left: 15px;
+            background: var(--green-mid);
+            color: white;
+            padding: 4px 12px;
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            z-index: 2;
+        }
 
-/* --- STYLE VOIR PLUS --- */
-.full-text {
-  display: none;
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(61, 220, 61, 0.1);
-  animation: fadeIn 0.4s ease;
-}
-.read-more-btn {
-  background: transparent;
-  border: 1px solid var(--green-mid);
-  color: var(--white);
-  padding: 0.6rem 1rem;
-  cursor: pointer;
-  font-family: var(--font-display);
-  font-size: 1rem;
-  letter-spacing: 1px;
-  transition: 0.3s;
-  margin-bottom: 1rem;
-}
-.read-more-btn:hover { background: var(--green-mid); border-color: var(--green-bright); }
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-5px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+        .news-content { padding: 25px; flex-grow: 1; }
+        .news-date { color: var(--green-bright); font-size: 0.8rem; margin-bottom: 10px; display: block; }
+        .news-title { font-family: var(--font-display); font-size: 1.8rem; line-height: 1.2; margin-bottom: 15px; }
+        .news-excerpt { color: var(--muted); font-size: 0.95rem; margin-bottom: 20px; }
 
-/* --- FOOTER --- */
-footer { text-align: center; padding: 60px; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.05); background: rgba(10, 15, 8, 0.6); }
+        .read-more {
+            color: var(--white);
+            text-decoration: none;
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+        .read-more:hover { color: var(--green-bright); padding-left: 5px; }
 
-/* --- RESPONSIVE --- */
-@media (max-width: 950px) {
-  nav { padding: 1rem 1.5rem; }
-  .burger { display: flex; }
-  .nav-links {
-    position: fixed;
-    right: -100%; top: 0; height: 100vh; width: 100%;
-    background: var(--dark);
-    flex-direction: column;
-    align-items: center; justify-content: center;
-    transition: 0.5s; z-index: 1000;
-  }
-  .nav-links.active { right: 0; }
-  .nav-links a { font-size: 1.5rem; font-family: var(--font-display); }
-  
-  .dropdown-content { 
-    position: static; display: block; background: transparent; border: none; box-shadow: none; text-align: center; padding: 0;
-  }
-  .dropdown-content li a { font-size: 1rem !important; color: var(--muted); }
+        .full-text {
+            display: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(61, 220, 61, 0.1);
+        }
+        .read-more-btn {
+            background: transparent;
+            border: 1px solid var(--green-mid);
+            color: var(--white);
+            padding: 0.6rem 1rem;
+            cursor: pointer;
+            font-family: var(--font-display);
+            margin-bottom: 1rem;
+        }
 
-  .burger.toggle .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
-  .burger.toggle .line2 { opacity: 0; }
-  .burger.toggle .line3 { transform: rotate(45deg) translate(-5px, -6px); }
-}
-</style>
+        /* --- RESPONSIVE --- */
+        @media (max-width: 950px) {
+            .burger { display: flex; }
+            .nav-links {
+                position: fixed;
+                right: -100%; top: 0; height: 100vh; width: 100%;
+                background: var(--dark);
+                flex-direction: column;
+                align-items: center; justify-content: center;
+                transition: 0.5s;
+            }
+            .nav-links.active { right: 0; }
+        }
+    </style>
 </head>
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo">
-    <img src="images/logo.png" alt="HBM">
-    <span class="nav-logo-text">HBM</span>
-  </a>
-
-  <div class="burger" id="burger">
-    <div class="line1"></div>
-    <div class="line2"></div>
-    <div class="line3"></div>
-  </div>
-
-  <ul class="nav-links" id="nav-links">
-    <li><a href="index.html">Accueil</a></li>
-    <li><a href="actualites.html">Actualités</a></li>
-    
-    <li class="dropdown">
-      <a href="#">Saison ▾</a>
-      <ul class="dropdown-content">
-        <li><a href="planning.html">Planning</a></li>
-        <li><a href="effectifs.html">Effectifs</a></li>
-        <li><a href="prepa-physique.html">Prépa Physique</a></li>
-      </ul>
-    </li>
-
-    <li class="dropdown">
-      <a href="#">Le Club ▾</a>
-      <ul class="dropdown-content">
-        <li><a href="qui.html">Qui sommes-nous ?</a></li>
-        <li><a href="organigramme.html">Le Bureau</a></li>
-        <li><a href="docs.html">Documents utiles</a></li>
-      </ul>
-    </li>
-
-    <li><a href="inscriptions.html">Inscriptions</a></li>
-    <li><a href="partenaires.html">Partenaires</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
-  </ul>
+    <a href="index.html" class="nav-logo">
+        <img src="images/logo.png" alt="HBM">
+        <span class="nav-logo-text">HBM</span>
+    </a>
+    <div class="burger" id="burger">
+        <div></div><div></div><div></div>
+    </div>
+    <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="actualites.html" style="color: var(--green-bright);">Actualités</a></li>
+        <li class="dropdown">
+            <a href="#">Saison ▾</a>
+            <ul class="dropdown-content">
+                <li><a href="planning.html">Planning</a></li>
+                <li><a href="effectifs.html">Effectifs</a></li>
+                <li><a href="prepa-physique.html">Prépa Physique</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#">Le Club ▾</a>
+            <ul class="dropdown-content">
+                <li><a href="qui.html">Qui sommes-nous ?</a></li>
+                <li><a href="organigramme.html">Le Bureau</a></li>
+                <li><a href="docs.html">Documents utiles</a></li>
+            </ul>
+        </li>
+        <li><a href="inscriptions.html">Inscriptions</a></li>
+        <li><a href="partenaires.html">Partenaires</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+    </ul>
 </nav>
 
 <header class="page-header">
-  <h1>L'ÉCHO DU TERRAIN</h1>
-  <p style="color: var(--muted);">Suivez l'évolution du Handball Club Mouy en temps réel.</p>
+    <h1>L'ÉCHO DU TERRAIN</h1>
+    <p style="color: var(--muted);">Suivez l'évolution du Handball Club Mouy en temps réel.</p>
 </header>
 
 <main class="news-container">
 
-  <article class="news-card">
-    <div class="news-img">
-      <div class="badge">CLUB</div>
-      <img src="images/cerclevert.png" style="object-fit: contain; padding: 20px;">
-    </div>
-    <div class="news-content">
-      <span class="news-date">04 MAI 2026</span>
-      <h2 class="news-title">BIENVENUE AU GROUPE CERCLE VERT !</h2>
-      <p class="news-excerpt">Un 5ème sponsor pour le HBM ! Nous sommes fiers d'annoncer que le GROUPE CERCLE VERT rejoint l'aventure ! On le remercie chaleureusement.</p>
-      <a href="partenaires.html" class="read-more">VOIR NOS PARTENAIRES →</a>
-
+    <!-- ACTU 1 : CERCLE VERT -->
     <article class="news-card">
-    <div class="news-img">
-      <div class="badge">CLUB</div>
-      <img src="images/logonb.png" style="object-fit: contain; padding: 20px;">
-    </div>
-    <div class="news-content">
-      <span class="news-date">24 AVRIL 2026</span>
-      <h2 class="news-title">Réunion le 25 avril</h2>
-      <p class="news-excerpt">Une première réunion du bureau aura lieu le 25 avril pour structurer le lancement officiel du club.</p>
-      
-      <div class="full-text" id="details-reunion">
-        <p>Au programme de cette réunion :</p>
-        <ul style="margin: 10px 0 10px 20px; color: var(--muted); font-size: 0.9rem;">
-          <li><strong>Équipements :</strong> Choix du design final des maillots (on reste sur le doré et vert !).</li>
-          <li><strong>Sponsors :</strong> 4 sponsors nous ont rejoints ! Un 5ème sponsor pourrait peut etre arriver la semaine prochaine</li>
-          <li><strong>Matériel :</strong> Un point va etre fait sur le matériel à acheter.</li>
-        </ul>
-        <p style="font-size: 0.9rem; color: var(--green-bright);"><em>Le bureau s'active pour que tout soit prêt pour la reprise !</em></p>
-      </div>
+        <div class="news-img">
+            <div class="badge">SPONSOR</div>
+            <img src="images/cerclevert.png" style="object-fit: contain; padding: 20px;">
+        </div>
+        <div class="news-content">
+            <span class="news-date">04 MAI 2026</span>
+            <h2 class="news-title">BIENVENUE AU GROUPE CERCLE VERT !</h2>
+            <p class="news-excerpt">Un 5ème sponsor pour le HBM ! Nous sommes fiers d'annoncer que le GROUPE CERCLE VERT rejoint l'aventure ! On le remercie chaleureusement.</p>
+            <a href="partenaires.html" class="read-more">VOIR NOS PARTENAIRES →</a>
+        </div>
+    </article>
 
-      <div style="display: flex; flex-direction: column; gap: 5px; margin-top: 1rem;">
-        <button onclick="toggleDetails('details-reunion', this)" class="read-more-btn">VOIR LES DÉTAILS</button>
-        <a href="index.html#contact" class="read-more">REJOINDRE L'ÉQUIPE →</a>
-      </div>
-    </div>
-  </article>
+    <!-- ACTU 2 : RÉUNION -->
+    <article class="news-card">
+        <div class="news-img">
+            <div class="badge">CLUB</div>
+            <img src="images/logonb.png" style="object-fit: contain; padding: 20px;">
+        </div>
+        <div class="news-content">
+            <span class="news-date">24 AVRIL 2026</span>
+            <h2 class="news-title">Réunion le 25 avril</h2>
+            <p class="news-excerpt">Une première réunion du bureau aura lieu pour structurer le lancement officiel du club.</p>
+            
+            <div class="full-text" id="details-reunion">
+                <p>Au programme :</p>
+                <ul style="margin: 10px 0 10px 20px; color: var(--muted); font-size: 0.9rem;">
+                    <li><strong>Équipements :</strong> Design final des maillots.</li>
+                    <li><strong>Sponsors :</strong> Point sur les 5 partenaires actuels.</li>
+                    <li><strong>Matériel :</strong> Liste d'achats pour la reprise.</li>
+                </ul>
+            </div>
 
-   <article class="news-card">
-    <div class="news-img">
-      <div class="badge">SPONSOR</div>
-      <img src="images/klein.png" alt="Partenariat Klein Expertise" style="object-fit: contain; padding: 20px;">
-    </div>
-    <div class="news-content">
-      <span class="news-date">24 AVRIL 2026</span>
-      <h2 class="news-title">BIENVENUE À KLEIN EXPERTISE !</h2>
-      <p class="news-excerpt">Un 4ème sponsor pour le HBM ! Nous sommes fiers d'annoncer que KLEIN EXPERTISE rejoint l'aventure ! On le remercie chaleureusement.</p>
-      <a href="partenaires.html" class="read-more">VOIR NOS PARTENAIRES →</a>
-    </div>
-  </article>
+            <div style="display: flex; flex-direction: column; gap: 5px; margin-top: 1rem;">
+                <button onclick="toggleDetails('details-reunion', this)" class="read-more-btn">VOIR LES DÉTAILS</button>
+                <a href="index.html#contact" class="read-more">REJOINDRE L'ÉQUIPE →</a>
+            </div>
+        </div>
+    </article>
 
-  <article class="news-card">
-    <div class="news-img">
-      <div class="badge">SPONSOR</div>
-      <img src="images/tvm.png" alt="Partenariat TVM Technologies" style="object-fit: contain; padding: 20px;">
-    </div>
-    <div class="news-content">
-      <span class="news-date">22 AVRIL 2026</span>
-      <h2 class="news-title">BIENVENUE À TVM TECHNOLOGIE !</h2>
-      <p class="news-excerpt">Le projet HBM prend de l'ampleur ! Nous sommes fiers d'annoncer que TVM TECHNOLOGIE rejoint l'aventure en tant que partenaire officiel pour cette première saison.</p>
-      <a href="partenaires.html" class="read-more">VOIR NOS PARTENAIRES →</a>
-    </div>
-  </article>
+    <!-- ACTU 3 : KLEIN EXPERTISE -->
+    <article class="news-card">
+        <div class="news-img">
+            <div class="badge">SPONSOR</div>
+            <img src="images/klein.png" style="object-fit: contain; padding: 20px;">
+        </div>
+        <div class="news-content">
+            <span class="news-date">24 AVRIL 2026</span>
+            <h2 class="news-title">BIENVENUE À KLEIN EXPERTISE !</h2>
+            <p class="news-excerpt">Un 4ème sponsor de poids rejoint les Lions de Mouy. Bienvenue à Klein Expertise !</p>
+            <a href="partenaires.html" class="read-more">VOIR NOS PARTENAIRES →</a>
+        </div>
+    </article>
 
-  <article class="news-card">
-    <div class="news-img">
-      <div class="badge">SPONSOR</div>
-      <img src="images/sirocco.png" alt="Partenariat Sirocco" style="object-fit: contain; padding: 20px;">
-    </div>
-    <div class="news-content">
-      <span class="news-date">17 AVRIL 2026</span>
-      <h2 class="news-title">SIROCCO EMBARQUE AVEC LE HBM</h2>
-      <p class="news-excerpt">Un nouveau partenaire de confiance nous rejoint ! Merci à Sirocco pour son engagement envers le sport local et le projet HBM.</p>
-      <a href="partenaires.html" class="read-more">VOIR NOS PARTENAIRES →</a>
-    </div>
-  </article>
-  
-  <article class="news-card">
-    <div class="news-img">
-      <div class="badge">SPONSOR</div>
-      <img src="images/lv-chauff.png" alt="Partenariat LV Chauff" style="object-fit: contain; padding: 20px;">
-    </div>
-    <div class="news-content">
-      <span class="news-date">16 AVRIL 2026</span>
-      <h2 class="news-title">LV CHAUFF REJOINT L'AVENTURE !</h2>
-      <p class="news-excerpt">Nous sommes fiers d'annoncer notre premier partenariat officiel avec LV CHAUFF. Un soutien de poids pour le lancement du club.</p>
-      <a href="partenaires.html" class="read-more">VOIR NOS PARTENAIRES →</a>
-    </div>
-  </article>
+    <!-- ACTU 4 : TVM -->
+    <article class="news-card">
+        <div class="news-img">
+            <div class="badge">SPONSOR</div>
+            <img src="images/tvm.png" style="object-fit: contain; padding: 20px;">
+        </div>
+        <div class="news-content">
+            <span class="news-date">22 AVRIL 2026</span>
+            <h2 class="news-title">BIENVENUE À TVM TECHNOLOGIE !</h2>
+            <p class="news-excerpt">Le projet HBM s'accélère avec l'arrivée de TVM Technologie comme partenaire officiel.</p>
+            <a href="partenaires.html" class="read-more">VOIR NOS PARTENAIRES →</a>
+        </div>
+    </article>
 
-  <article class="news-card">
-    <div class="news-img">
-      <div class="badge">CLUB</div>
-      <img src="images/logonb.png" style="object-fit: contain; padding: 20px;">
-    </div>
-    <div class="news-content">
-      <span class="news-date">14 AVRIL 2026</span>
-      <h2 class="news-title">EN PLEINE PHASE DE RECRUTEMENT</h2>
-      <p class="news-excerpt">L'effectif se construit rapidement ! Une dizaine de passionnés ont déjà répondu à l'appel. Et si vous étiez le prochain ?</p>
-      <a href="index.html#contact" class="read-more">REJOINDRE L'ÉQUIPE →</a>
-    </div>
-  </article>
+    <!-- ACTU 5 : SIROCCO -->
+    <article class="news-card">
+        <div class="news-img">
+            <div class="badge">SPONSOR</div>
+            <img src="images/sirocco.png" style="object-fit: contain; padding: 20px;">
+        </div>
+        <div class="news-content">
+            <span class="news-date">17 AVRIL 2026</span>
+            <h2 class="news-title">SIROCCO EMBARQUE AVEC LE HBM</h2>
+            <p class="news-excerpt">Un nouveau partenaire de confiance nous rejoint ! Merci à Sirocco pour son engagement.</p>
+            <a href="partenaires.html" class="read-more">VOIR NOS PARTENAIRES →</a>
+        </div>
+    </article>
+
+    <!-- ACTU 6 : LV CHAUFF -->
+    <article class="news-card">
+        <div class="news-img">
+            <div class="badge">SPONSOR</div>
+            <img src="images/lv-chauff.png" style="object-fit: contain; padding: 20px;">
+        </div>
+        <div class="news-content">
+            <span class="news-date">16 AVRIL 2026</span>
+            <h2 class="news-title">LV CHAUFF REJOINT L'AVENTURE !</h2>
+            <p class="news-excerpt">Notre premier partenariat officiel ! Un soutien historique pour le lancement du club.</p>
+            <a href="partenaires.html" class="read-more">VOIR NOS PARTENAIRES →</a>
+        </div>
+    </article>
 
 </main>
 
 <footer>
-  &copy; 2026 HBM — Handball Club Mouy — L'aventure ne fait que commencer.
+    &copy; 2026 HBM — Handball Club Mouy — L'aventure ne fait que commencer.
 </footer>
 
 <script>
-  const burger = document.getElementById('burger');
-  const navLinks = document.getElementById('nav-links');
+    const burger = document.getElementById('burger');
+    const navLinks = document.getElementById('nav-links');
 
-  burger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    burger.classList.toggle('toggle');
-  });
-
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('active');
-      burger.classList.remove('toggle');
+    burger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        burger.classList.toggle('toggle');
     });
-  });
 
-  function toggleDetails(id, btn) {
-    const target = document.getElementById(id);
-    if (target.style.display === "block") {
-      target.style.display = "none";
-      btn.innerText = "VOIR LES DÉTAILS";
-    } else {
-      target.style.display = "block";
-      btn.innerText = "RÉDUIRE";
+    function toggleDetails(id, btn) {
+        const target = document.getElementById(id);
+        if (target.style.display === "block") {
+            target.style.display = "none";
+            btn.innerText = "VOIR LES DÉTAILS";
+        } else {
+            target.style.display = "block";
+            btn.innerText = "RÉDUIRE";
+        }
     }
-  }
 </script>
 
 </body>
