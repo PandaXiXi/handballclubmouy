@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actualités - HBM</title>
 
-    <!-- META TAGS POUR LES RÉSEAUX SOCIAUX (Open Graph) -->
-    <meta property="og:title" content="Handball Club Mouy - L'actualité des Lions">
-    <meta property="og:description" content="Suivez l'évolution du HBM : nouveaux sponsors, matchs et vie du club.">
-    <meta property="og:image" content="images/logonb.png"> 
-    <meta property="og:type" content="website">
+    <!-- META TAGS POUR L'ACTU DU MATCH (Modifiables à chaque partage) -->
+    <meta property="og:title" content="CHOC DES LIONS : Méru vs Mouy le 20 Mai !">
+    <meta property="og:description" content="Le HBM défie l'équipe Loisir de Méru pour un derby qui s'annonce électrique. Coup d'envoi à 20h !">
+    <meta property="og:image" content="images/logo-meru.jpg"> <!-- Ou une affiche de match si tu en as une -->
+    <meta property="og:url" content="https://tonsite.github.io/actualites.html">
+    <meta name="twitter:card" content="summary_large_image">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -26,6 +27,7 @@
             --muted: #7a9a7a;
             --font-display: 'Bebas Neue', sans-serif;
             --font-body: 'DM Sans', sans-serif;
+            --gold: #d4af37;
         }
         body {
             background: radial-gradient(circle at center, #1a2e15 0%, var(--dark) 100%);
@@ -48,12 +50,12 @@
             backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(34,139,34,0.25);
         }
-        .nav-logo { display: flex; align-items: center; gap: 0.8rem; text-decoration: none; color: inherit; z-index: 1100; }
+        .nav-logo { display: flex; align-items: center; gap: 0.8rem; text-decoration: none; color: inherit; }
         .nav-logo img { height: 45px; }
-        .nav-logo-text { font-family: var(--font-display); font-size: 1.4rem; color: var(--green-bright); letter-spacing: 1px; }
+        .nav-logo-text { font-family: var(--font-display); font-size: 1.4rem; color: var(--green-bright); }
 
         .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
-        .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; transition: 0.3s; position: relative; }
+        .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; transition: 0.3s; }
         .nav-links a:hover { color: var(--green-bright); }
 
         .dropdown { position: relative; }
@@ -70,11 +72,11 @@
             list-style: none;
             box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
-        .dropdown-content li a { padding: 0.7rem 1.2rem; font-size: 0.75rem !important; display: block; }
         .dropdown:hover .dropdown-content { display: block; }
+        .dropdown-content li a { padding: 0.7rem 1.2rem; font-size: 0.75rem !important; }
 
-        .burger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 1100; }
-        .burger div { width: 28px; height: 2px; background: var(--green-bright); transition: 0.4s; }
+        .burger { display: none; cursor: pointer; flex-direction: column; gap: 6px; }
+        .burger div { width: 28px; height: 2px; background: var(--green-bright); }
 
         /* --- HEADER PAGE --- */
         .page-header {
@@ -104,10 +106,13 @@
             flex-direction: column;
             backdrop-filter: blur(5px);
         }
-        .news-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--green-mid);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        .news-card:hover { transform: translateY(-10px); border-color: var(--green-mid); }
+
+        /* Style Spécial pour la "Une" */
+        .featured {
+            grid-column: 1 / -1;
+            border: 2px solid var(--gold);
+            background: rgba(212, 175, 55, 0.05);
         }
 
         .news-img {
@@ -145,27 +150,11 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            transition: 0.3s;
-        }
-        .read-more:hover { color: var(--green-bright); padding-left: 5px; }
-
-        .full-text {
-            display: none;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(61, 220, 61, 0.1);
-        }
-        .read-more-btn {
-            background: transparent;
-            border: 1px solid var(--green-mid);
-            color: var(--white);
-            padding: 0.6rem 1rem;
-            cursor: pointer;
-            font-family: var(--font-display);
-            margin-bottom: 1rem;
         }
 
-        /* --- RESPONSIVE --- */
+        /* --- FOOTER --- */
+        footer { text-align: center; padding: 60px; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.05); }
+
         @media (max-width: 950px) {
             .burger { display: flex; }
             .nav-links {
@@ -199,6 +188,7 @@
                 <li><a href="planning.html">Planning</a></li>
                 <li><a href="effectifs.html">Effectifs</a></li>
                 <li><a href="prepa-physique.html">Prépa Physique</a></li>
+                <li><a href="jeu.html">Le Jeu 🎮</a></li>
             </ul>
         </li>
         <li class="dropdown">
@@ -211,18 +201,34 @@
         </li>
         <li><a href="inscriptions.html">Inscriptions</a></li>
         <li><a href="partenaires.html">Partenaires</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
     </ul>
 </nav>
 
 <header class="page-header">
     <h1>L'ÉCHO DU TERRAIN</h1>
-    <p style="color: var(--muted);">Suivez l'évolution du Handball Club Mouy en temps réel.</p>
+    <p style="color: var(--muted);">Suivez l'aventure des Lions du HB Mouy.</p>
 </header>
 
 <main class="news-container">
 
-    <!-- ACTU 1 : CERCLE VERT -->
+    <!-- LA "UNE" : MATCH CONTRE MÉRU -->
+    <article class="news-card featured">
+        <div class="news-img" style="height: 300px; background: url('images/logo-meru.jpg') center/contain no-repeat, rgba(0,0,0,0.4);">
+            <div class="badge" style="background: var(--gold); color: black;">ÉVÉNEMENT</div>
+        </div>
+        <div class="news-content" style="text-align: center;">
+            <span class="news-date">PUBLIÉ LE 05 MAI 2026</span>
+            <h2 class="news-title" style="font-size: 3rem;">LE DERBY : MÉRU LOISIR vs HBM</h2>
+            <p class="news-excerpt" style="font-size: 1.2rem; max-width: 800px; margin: 0 auto 20px;">Nos Lions se déplacent à Méru pour un match amical de gala contre l'équipe Loisir locale. Venez nombreux soutenir le club pour ce premier grand rendez-vous !</p>
+            <div style="margin-bottom: 25px;">
+                <span style="display: block; color: var(--gold); font-family: var(--font-display); font-size: 1.5rem;">📅 MERCREDI 20 MAI — 20H00</span>
+                <span style="color: var(--muted);">📍 Gymnase de Méru</span>
+            </div>
+            <a href="planning.html" class="read-more" style="justify-content: center; border: 1px solid var(--gold); padding: 10px 20px;">DÉTAILS DU MATCH →</a>
+        </div>
+    </article>
+
+    <!-- ACTU : CERCLE VERT -->
     <article class="news-card">
         <div class="news-img">
             <div class="badge">SPONSOR</div>
@@ -231,12 +237,12 @@
         <div class="news-content">
             <span class="news-date">04 MAI 2026</span>
             <h2 class="news-title">BIENVENUE AU GROUPE CERCLE VERT !</h2>
-            <p class="news-excerpt">Un 5ème sponsor pour le HBM ! Nous sommes fiers d'annoncer que le GROUPE CERCLE VERT rejoint l'aventure ! On le remercie chaleureusement.</p>
+            <p class="news-excerpt">Le HBM ne s'arrête plus ! Le GROUPE CERCLE VERT devient notre 5ème partenaire officiel.</p>
             <a href="partenaires.html" class="read-more">VOIR NOS PARTENAIRES →</a>
         </div>
     </article>
 
-    <!-- ACTU 2 : RÉUNION -->
+    <!-- ACTU : RÉUNION -->
     <article class="news-card">
         <div class="news-img">
             <div class="badge">CLUB</div>
@@ -244,106 +250,34 @@
         </div>
         <div class="news-content">
             <span class="news-date">24 AVRIL 2026</span>
-            <h2 class="news-title">Réunion le 25 avril</h2>
-            <p class="news-excerpt">Une première réunion du bureau aura lieu pour structurer le lancement officiel du club.</p>
-            
-            <div class="full-text" id="details-reunion">
-                <p>Au programme :</p>
-                <ul style="margin: 10px 0 10px 20px; color: var(--muted); font-size: 0.9rem;">
-                    <li><strong>Équipements :</strong> Design final des maillots.</li>
-                    <li><strong>Sponsors :</strong> Point sur les 5 partenaires actuels.</li>
-                    <li><strong>Matériel :</strong> Liste d'achats pour la reprise.</li>
-                </ul>
-            </div>
-
-            <div style="display: flex; flex-direction: column; gap: 5px; margin-top: 1rem;">
-                <button onclick="toggleDetails('details-reunion', this)" class="read-more-btn">VOIR LES DÉTAILS</button>
-                <a href="index.html#contact" class="read-more">REJOINDRE L'ÉQUIPE →</a>
-            </div>
+            <h2 class="news-title">Réunion de Bureau</h2>
+            <p class="news-excerpt">Structuration du club, choix du matériel et finalisation des maillots étaient au programme.</p>
+            <a href="#" class="read-more">EN SAVOIR PLUS →</a>
         </div>
     </article>
 
-    <!-- ACTU 3 : KLEIN EXPERTISE -->
+    <!-- AUTRES SPONSORS (RACCOURCIS) -->
     <article class="news-card">
-        <div class="news-img">
-            <div class="badge">SPONSOR</div>
-            <img src="images/klein.png" style="object-fit: contain; padding: 20px;">
-        </div>
+        <div class="news-img"><img src="images/klein.png" style="object-fit: contain; padding: 20px;"></div>
         <div class="news-content">
             <span class="news-date">24 AVRIL 2026</span>
-            <h2 class="news-title">BIENVENUE À KLEIN EXPERTISE !</h2>
-            <p class="news-excerpt">Un 4ème sponsor de poids rejoint les Lions de Mouy. Bienvenue à Klein Expertise !</p>
-            <a href="partenaires.html" class="read-more">VOIR NOS PARTENAIRES →</a>
-        </div>
-    </article>
-
-    <!-- ACTU 4 : TVM -->
-    <article class="news-card">
-        <div class="news-img">
-            <div class="badge">SPONSOR</div>
-            <img src="images/tvm.png" style="object-fit: contain; padding: 20px;">
-        </div>
-        <div class="news-content">
-            <span class="news-date">22 AVRIL 2026</span>
-            <h2 class="news-title">BIENVENUE À TVM TECHNOLOGIE !</h2>
-            <p class="news-excerpt">Le projet HBM s'accélère avec l'arrivée de TVM Technologie comme partenaire officiel.</p>
-            <a href="partenaires.html" class="read-more">VOIR NOS PARTENAIRES →</a>
-        </div>
-    </article>
-
-    <!-- ACTU 5 : SIROCCO -->
-    <article class="news-card">
-        <div class="news-img">
-            <div class="badge">SPONSOR</div>
-            <img src="images/sirocco.png" style="object-fit: contain; padding: 20px;">
-        </div>
-        <div class="news-content">
-            <span class="news-date">17 AVRIL 2026</span>
-            <h2 class="news-title">SIROCCO EMBARQUE AVEC LE HBM</h2>
-            <p class="news-excerpt">Un nouveau partenaire de confiance nous rejoint ! Merci à Sirocco pour son engagement.</p>
-            <a href="partenaires.html" class="read-more">VOIR NOS PARTENAIRES →</a>
-        </div>
-    </article>
-
-    <!-- ACTU 6 : LV CHAUFF -->
-    <article class="news-card">
-        <div class="news-img">
-            <div class="badge">SPONSOR</div>
-            <img src="images/lv-chauff.png" style="object-fit: contain; padding: 20px;">
-        </div>
-        <div class="news-content">
-            <span class="news-date">16 AVRIL 2026</span>
-            <h2 class="news-title">LV CHAUFF REJOINT L'AVENTURE !</h2>
-            <p class="news-excerpt">Notre premier partenariat officiel ! Un soutien historique pour le lancement du club.</p>
-            <a href="partenaires.html" class="read-more">VOIR NOS PARTENAIRES →</a>
+            <h2 class="news-title">KLEIN EXPERTISE REJOINT L'ÉQUIPE</h2>
+            <a href="partenaires.html" class="read-more">PARTENAIRES →</a>
         </div>
     </article>
 
 </main>
 
 <footer>
-    &copy; 2026 HBM — Handball Club Mouy — L'aventure ne fait que commencer.
+    &copy; 2026 HBM — Handball Club Mouy — Ensemble vers la victoire.
 </footer>
 
 <script>
     const burger = document.getElementById('burger');
     const navLinks = document.getElementById('nav-links');
-
     burger.addEventListener('click', () => {
         navLinks.classList.toggle('active');
-        burger.classList.toggle('toggle');
     });
-
-    function toggleDetails(id, btn) {
-        const target = document.getElementById(id);
-        if (target.style.display === "block") {
-            target.style.display = "none";
-            btn.innerText = "VOIR LES DÉTAILS";
-        } else {
-            target.style.display = "block";
-            btn.innerText = "RÉDUIRE";
-        }
-    }
 </script>
 
 </body>
